@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 import  matplotlib.pyplot as plt
-import seaborn as sns
+import seaborn as sb
 import pandas_profiling as pp
-from pandas_profiling import ProfileReport as pr
+from pandas_profiling import ProfileReport
 import sklearn
 from sklearn import metrics, model_selection, tree
 
@@ -167,5 +167,22 @@ df['f27'] = f27_list
 ###Preprocesamiento
 #Conviertiendo la variable categorica status a una variable binaria (legitimo = 1, phishing = 0)
 df['status'] = df['status'].apply(lambda x: 1 if (x == 'legitimate') else 0)
-df = df.drop(['url'], axis=1)
-print(df)
+df_final = df.drop(['url'], axis=1)
+
+###Visualizacion de resultados
+cols = list(df_final)
+nombres_variables = []
+for i in cols:
+    if i == 'status':
+        pass
+    else:
+        nombres_variables.append(i)
+
+print('plotting...')
+#sb.pairplot(df_final, hue='status', vars=nombres_variables)
+#plt.show()
+
+print('reporting profile...')
+profile = ProfileReport(df_final, title='Reporte Links Legitimos vs Phishing')
+profile.to_file('reporte_legit_phish.html')
+#print(df)
