@@ -1,14 +1,15 @@
 # Lab01_SDS
 
 -Matriz de Confusion:
-              precision    recall  f1-score   support
+
+                 precision    recall  f1-score   support
 
     phishing       0.94      0.94      0.94      1737
-    legitimate       0.94      0.94      0.94      1692
+    legitimate     0.94      0.94      0.94      1692
 
     accuracy                           0.94      3429
     macro avg       0.94      0.94      0.94      3429
-    weighted avg       0.94      0.94      0.94      3429
+    weighted avg    0.94      0.94      0.94      3429
 
 Tanto las metricas de presicion, recall y f1 mostraron el mismo resultado: un 94% en el nivel de acertacion. Esto significa que cualquiera de estas metricas puede utilizarse para un modelo de arboles de desicion para deteccion de phishing.
 
