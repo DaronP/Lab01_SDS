@@ -198,3 +198,26 @@ profile = ProfileReport(df_final, title='Reporte Links Legitimos vs Phishing')
 #profile.to_file('reporte_legit_phish.html')
 #print(df_final)
 #df_final.to_csv('df_final.csv',index=False)
+
+target = df_final['status']
+feature_matrix = df_final.drop(['status'], axis=1)
+
+print('Final features:', feature_matrix.columns)
+feature_matrix.head()
+
+feature_matrix_train, feature_matrix_test, target_train, target_test = model_selection.train_test_split(feature_matrix, target, test_size=0.30, random_state=31)
+
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(feature_matrix_train, target_train)
+
+print(feature_matrix_train.count())
+
+print(feature_matrix_test.count())
+
+#Metricas
+
+target_pred = clf.predict(feature_matrix_test)
+
+print(metrics.accuracy_score(target_test, target_pred))
+print('Matriz de confusion /n',metrics.confusion_matrix(target_test, target_pred))
+print(metrics.classification_report(target_test, target_pred, target_names=['phishing', 'legitimate']))
