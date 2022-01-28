@@ -1,5 +1,11 @@
 # Lab01_SDS
 
+#Instrucciones:
+El archivo lab01.py contiene los metodos para el preprocesamiento, entrenamiento del modelo y la muestra de las metricas.
+IMPORTANTE: No se pudo obtener la matriz de correlacion, ya que esta tardaba mas de 8 horas en compilar, junto con el reporte de profile.
+
+Se adjunta el modelo obtenido en el archivo model.pkl
+
 -Matriz de Confusion:
 
                  precision    recall  f1-score   support
