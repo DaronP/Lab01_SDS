@@ -167,6 +167,17 @@ df['f27'] = f27_list
 ###Preprocesamiento
 #Conviertiendo la variable categorica status a una variable binaria (legitimo = 1, phishing = 0)
 df['status'] = df['status'].apply(lambda x: 1 if (x == 'legitimate') else 0)
+df = df.drop_duplicates(keep='first')
+df = df.drop(['prefix_suffix'], axis=1)
+df = df.drop(['nb_redirection'], axis=1)
+df = df.drop(['ratio_intMedia'], axis=1)
+df = df.drop(['ratio_extMedia'], axis=1)
+df = df.drop(['ratio_nullHyperlinks'], axis=1)
+df = df.drop(['ratio_intRedirection'], axis=1)
+df = df.drop(['ratio_intErrors'], axis=1)
+df = df.drop(['submit_email'], axis=1)
+df = df.drop(['sfh'], axis=1)
+df = df.drop(['f9'], axis=1)
 df_final = df.drop(['url'], axis=1)
 
 ###Visualizacion de resultados
@@ -184,5 +195,6 @@ print('plotting...')
 
 print('reporting profile...')
 profile = ProfileReport(df_final, title='Reporte Links Legitimos vs Phishing')
-profile.to_file('reporte_legit_phish.html')
-#print(df)
+#profile.to_file('reporte_legit_phish.html')
+#print(df_final)
+#df_final.to_csv('df_final.csv',index=False)
