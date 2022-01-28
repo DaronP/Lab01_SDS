@@ -6,6 +6,7 @@ import pandas_profiling as pp
 from pandas_profiling import ProfileReport
 import sklearn
 from sklearn import metrics, model_selection, tree
+import pickle
 
 
 ###Cargando dataset
@@ -209,6 +210,10 @@ feature_matrix_train, feature_matrix_test, target_train, target_test = model_sel
 
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(feature_matrix_train, target_train)
+
+clf_pkl_model = open('model.pkl', 'wb')
+pickle.dump(clf, clf_pkl_model)
+clf_pkl_model.close()
 
 print(feature_matrix_train.count())
 
